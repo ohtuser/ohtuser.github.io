@@ -86,11 +86,13 @@ $(document).ready(function () {
         if ($(window).scrollTop() > 0) {
             $('.navbar').removeClass('bg-transparent a-color').addClass('my-bg-dark navbar-light');
             $('nav').css('border-bottom', '1px solid rgba(0,0,0,.1)');
+			$('.navbar-toggler').fadeIn("fast");
 
         }
         else {
             $('.navbar').removeClass('my-bg-dark navbar-light').addClass('bg-transparent a-color');
             $('nav').css('border-bottom', '1px solid transparent');
+			$('.navbar-toggler').fadeOut("fast");
         }
         // console.log('scrolled');
     });
