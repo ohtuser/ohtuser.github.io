@@ -512,3 +512,23 @@ header {
   100%  {border-left-color: #fff;}
 } */
 
+/* responsive */
+@media (max-width: 767.98px) { 
+  .arrow_box:before{
+    display: none;
+  }
+  .arrow_box:after{
+    display: none;
+  }
+  .divider h2{
+    font-size: 1.5rem;
+  }
+  .navbar-brand img{
+    width: 11rem;
+  }
+  .navbar-toggler{
+    background-color: #43c5c1;
+    display: none;
+  }
+ }
+
