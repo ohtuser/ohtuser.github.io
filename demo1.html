@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select All</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Select All And Get Selected Row</h1>
+                <div class="selectall">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Select ALl <input class="checkall" type="checkbox"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="list">
+                            <tr id="1">
+                                <td>1</td>
+                                <td>Abc</td>
+                                <td><input class="selectedId select_id-1" type="checkbox"></td>
+                            </tr>
+                            <tr id="2">
+                                <td>2</td>
+                                <td>Abc</td>
+                                <td><input class="selectedId select_id-2" type="checkbox"></td>
+                            </tr>
+                            <tr id="3">
+                                <td>3</td>
+                                <td>Abc</td>
+                                <td><input class="selectedId select_id-3" type="checkbox"></td>
+                            </tr>
+                            <tr id="4">
+                                <td>4</td>
+                                <td>Abc</td>
+                                <td><input class="selectedId select_id-4" type="checkbox"></td>
+                            </tr>
+                            <tr id="5">
+                                <td>5</td>
+                                <td>Abc</td>
+                                <td><input class="selectedId select_id-5" type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-success px-5 get_result">Get Selected Row</button>
+                    <div class="result"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.checkall').click(function () {
+                $('.selectedId').prop('checked', this.checked);
+            });
+
+            $(document).on('change','.selectedId',function () {
+                let check = ($('.selectedId').filter(":checked").length == $('.selectedId').length);
+                $('.checkall').prop("checked", check);
+            });
+
+            $('.get_result').click(function(){
+                let list = [];
+                $("#list tr").each(function () {
+                    let tr_id = $(this).attr("id");
+                    if (typeof tr_id != "undefined") {
+                        if ($(".select_id-" + tr_id).is(":checked")) {
+                            list.push(tr_id);
+                        }
+                    }
+                });
+                if(list.length>0){
+                    $('.result').text("You Have Selected: "+ list);
+                }else{
+                    alert("Nothing Selected");
+                }
+                
+                // If want to send the rows to the beckend
+                var data = JSON.stringify(list); //send json data to beckend
+            });
+        });
+    </script>
+</body>
+</html>
